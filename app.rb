@@ -19,13 +19,14 @@ end
 
 post '/games' do
   steam_ids = params['steam_ids'].split(',').map { |id| id.strip }
+
   @players = get_player_summaries(steam_ids).map do |player| 
     player['games'] = get_owned_games(player['steamid'])['games']
     player
-  end
+  end.sort { |a,b| a['personaname'] <=> b['personaname'] }
+
   @games = find_games_intersection(@players)
-  puts JSON.pretty_generate(@players)
-  puts JSON.pretty_generate(@games)
+
   haml :games
 end
 

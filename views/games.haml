@@ -1,7 +1,8 @@
 %div.columns
   %div.column.col-6
     - @players.each do |player|
-      = haml :player, locals: { player: player }
+      %div.pb-2
+        = haml :_player, locals: { player: player }
   %div.column.col-6
     %table.table.table-striped.table-hover
       %thead
