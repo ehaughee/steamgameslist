@@ -2,12 +2,14 @@ require 'steam-api'
 require 'json'
 require 'sinatra'
 
+Steam.apikey = ENV['STEAM_API_KEY'] || File.read('apikey')
+
 get '/' do
-    'Navigate to <code>/{your steam id here}/games</code> to see a list of games'
+    haml :index
 end
 
 get '/:steam_id/games' do
-    Steam.apikey = File.read('apikey')
+    
     response = Steam::Player.owned_games(params['steam_id'], params: { include_appinfo: 1 })
 
     # response["games"].each do |game|
@@ -15,4 +17,8 @@ get '/:steam_id/games' do
     # end
     @games = response["games"]
     haml :games
+end
+
+post '/games' do
+    redirect "/#{params['steam_id']}/games"
 end

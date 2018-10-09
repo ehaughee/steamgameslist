@@ -1,0 +1,5 @@
+-# %p Navigate to <code>/{your steam id here}/games</code> to see a list of games
+%form{ action: "/games", method: "POST" }
+    %label Steam ID
+    %input{ type: 'text', name: 'steam_id' }
+    %input{ type: 'submit' }
