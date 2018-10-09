@@ -1,5 +1,7 @@
--# %p Navigate to <code>/{your steam id here}/games</code> to see a list of games
-%form{ action: "/games", method: "POST" }
-    %label Steam ID
-    %input{ type: 'text', name: 'steam_id' }
-    %input{ type: 'submit' }
+%div.column.col-6
+  %form{ action: "/games", method: "POST" }
+    %div.form-group
+      %label.form-label Steam IDs
+      %textarea.form-input{ name: 'steam_ids', placeholder: 'enter one or more Steam IDs separated by commas.' }
+    %div.form-group
+      %input.form-input.btn.btn-primary.mt-1{ type: 'submit', text: 'Submit' }

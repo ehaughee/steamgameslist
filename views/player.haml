@@ -1,0 +1,12 @@
+%div.tile.tile-centered
+  %div.tile-icon
+    %figure.avatar.avatar-lg
+      %img{ src: player['avatarfull'], alt: player['personaname'] }
+  %div.tile-content
+    %div.tile-title
+      %a{ href: "/player/#{player['steamid']}" }
+        = player['personaname']
+    %div.tile-subtitle
+      = player['games'].length
+      games
+    
