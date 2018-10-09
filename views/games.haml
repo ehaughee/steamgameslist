@@ -1,0 +1,17 @@
+!!! 5
+%html
+  %head
+    %title Games list
+    %link(rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css")
+  %body
+    %div.container
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th Game
+            %th Playtime (Hours)
+        %tbody
+          - @games.each do |game|
+            %tr
+              %td= game['name']
+              %td= game['playtime_forever'] / 60
