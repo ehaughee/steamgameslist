@@ -3,7 +3,7 @@ require 'json'
 require 'sinatra'
 
 get '/' do
-    'Navigate to /<your steam id here>/games to see a list of games'
+    'Navigate to <code>/{your steam id here}/games</code> to see a list of games'
 end
 
 get '/:steam_id/games' do
