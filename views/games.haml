@@ -1,3 +1,19 @@
+:ruby
+  MULTIPLAYER_STATUS_MAP = {
+    :multi => 'Multiplayer',
+    :coop => 'Co-op',
+    :none => 'None',
+  }
+
+  def get_multiplayer_strings(categories)
+    if categories.empty?
+      return [MULTIPLAYER_STATUS_MAP[:none]]
+    else
+      return categories.map do |c|
+        MULTIPLAYER_STATUS_MAP[c]
+      end
+    end
+  end
 %div.columns
   %div.column.col-6
     - @players.each do |player|
@@ -8,7 +24,14 @@
       %thead
         %tr
           %th Game
+          %th Multiplayer
       %tbody
         - @games.each do |game|
           %tr
-            %td= game
+            %td= game['name']
+            %td
+              - get_multiplayer_strings(game['multiplayer_categories']).each do |cat|
+                - if cat == 'None'
+                  %span.label.label-error= cat
+                - else
+                  %span.label.label-primary= cat

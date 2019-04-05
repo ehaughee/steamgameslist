@@ -7,6 +7,6 @@
       %a{ href: "/player/#{player['steamid']}" }
         = player['personaname']
     %div.tile-subtitle
-      = player['games'].length
+      = player['games'].nil? ? 0 : player['games'].length
       games
     
