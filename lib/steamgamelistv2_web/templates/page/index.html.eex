@@ -1,0 +1,9 @@
+<section>
+  <form method="GET", action="/intersection">
+    <label>Enter Steam IDs</label>
+    <div>
+      <textarea name="user_ids" class="border-2 border-gray-300 rounded-lg"></textarea>
+    </div>
+    <input type="submit" />
+  </form>
+</section>

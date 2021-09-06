@@ -1,0 +1,15 @@
+<section>
+  <div class="flex mb-2">
+    <img class="h-12 w-12 rounded-full mx-2" src="<%= @player_info["avatarmedium"] %>" />
+    <h2 class="text-5xl font-bold">
+      <a href="<%= Steamex.SteamID.base_url(@user_id) %>">
+        <%= @player_info["personaname"] %>
+        (<%= @games_info["game_count"] %>)
+      </a>
+    </h2>
+  </div>
+  <%= render_shared "games_list.html", %{
+    games: @games_info["games"],
+    game_image_url_base: @game_image_url_base
+  } %>
+</section>

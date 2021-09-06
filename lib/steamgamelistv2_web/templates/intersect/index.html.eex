@@ -1,0 +1,16 @@
+<section>
+  <h1>Games in common (<%= Enum.count(@games) %>)</h1>
+  <ol>
+    <%= for profile <- @profiles do %>
+      <li>
+        <a href="<%= Steamex.SteamID.base_url(profile["steamid"]) %>">
+          <%= profile["personaname"] %>
+        </a>
+      </li>
+    <% end %>
+  </ol>
+  <%= render_shared "games_list.html", %{
+    games: @games,
+    game_image_url_base: @game_image_url_base
+  } %>
+</section>
