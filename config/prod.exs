@@ -16,6 +16,13 @@ config :steamgamelistv2, Steamgamelistv2Web.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+# Gigalixir configuration
+config :steamgamelistv2, Steamgamelistv2Web.Endpoint,
+  http: [port: {:system, "PORT"}], # Possibly not needed, but doesn't hurt
+  url: [host: System.get_env("APP_NAME") <> ".gigalixirapp.com", port: 443],
+  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
+  server: true
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
