@@ -10,7 +10,7 @@
   </head>
   <body>
     <header>
-      <a href="/">Home</a>
+      <%= render_shared "nav_header.html" %>
     </header>
     <main role="main" class="container mx-auto">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
