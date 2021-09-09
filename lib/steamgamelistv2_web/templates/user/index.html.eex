@@ -8,8 +8,17 @@
       </a>
     </h2>
   </div>
-  <%= render_shared "games_list.html", %{
-    games: @games_info["games"],
-    game_image_url_base: @game_image_url_base
-  } %>
+  <div class="flex flex-row">
+    <div>
+      <%= render_shared "games_list.html", %{
+        games: @games_info["games"],
+        game_image_url_base: @game_image_url_base
+      } %>
+    </div>
+    <div>
+      <%= render_shared "friends_list.html", %{
+        profiles: @player_friend_profiles
+      } %>
+    </div>
+  </div>
 </section>
