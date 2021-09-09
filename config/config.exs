@@ -13,8 +13,7 @@ config :steamgamelistv2, Steamgamelistv2Web.Endpoint,
   secret_key_base: "wi3UjLsvasL8zuMkgq0RR9CgGjXa0n2MPVzyhoK95lwAbEvPbQ+LgDMs1qO1DG7y",
   render_errors: [view: Steamgamelistv2Web.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Steamgamelistv2.PubSub,
-  live_view: [signing_salt: "sMO/tnSb"],
-  ***REMOVED***
+  live_view: [signing_salt: "sMO/tnSb"]
 
 # Configures Elixir's Logger
 config :logger, :console,
