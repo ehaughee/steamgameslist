@@ -1,14 +1,10 @@
 <section>
   <h1>Games in common (<%= Enum.count(@games) %>)</h1>
-  <ol>
+  <div class="flex mb-4">
     <%= for profile <- @profiles do %>
-      <li>
-        <a href="/user/<%= profile["steamid"] %>">
-          <%= profile["personaname"] %>
-        </a>
-      </li>
+      <%= render_shared "user_card.html", %{ profile: profile }%>
     <% end %>
-  </ol>
+  </div>
   <%= render_shared "games_list.html", %{
     games: @games,
     game_image_url_base: @game_image_url_base
