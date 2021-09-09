@@ -8,7 +8,6 @@ defmodule Steamgamelistv2Web.IntersectController do
     all_user_games = get_all_user_games(user_ids_list)
     all_user_profiles = List.flatten(get_all_user_profiles(user_ids_list))
     intersection = get_intersection(all_user_games)
-    IO.puts inspect(all_user_profiles)
     render(
       conn,
       "index.html",
@@ -23,28 +22,11 @@ defmodule Steamgamelistv2Web.IntersectController do
   #   |>
   # end
 
-  # defp get_intersection(list_of_game_lists) do
-  #   list_of_game_lists
-  #   |> List.flatten()
-  #   |> Enum.uniq_by(&(&1["appid"]))
-  #   # TODO: I don't think this actually works...
-  #   |> Enum.filter(
-  #     fn (game) -> Enum.all?(
-  #       list_of_game_lists,
-  #       fn (list) -> Enum.member?(
-  #         Enum.map(list, &(&1["appid"])),
-  #         game["appid"]
-  #       ) end
-  #     ) end
-  #   )
-  # end
 
   defp get_intersection(list_of_game_lists) do
-    flat_uniq_list = list_of_game_lists
+    list_of_game_lists
     |> List.flatten()
     |> Enum.uniq_by(&(&1["appid"]))
-
-    flat_uniq_list
     |> Enum.filter(fn (game) -> game_exists_in_all_lists(game, list_of_game_lists) end)
   end
 
@@ -58,8 +40,7 @@ defmodule Steamgamelistv2Web.IntersectController do
   end
 
   defp get_all_user_profiles(user_ids_list) do
-    # TODO: Request multiple steam ids at the same time instead of separate requests for each
-    pmap(user_ids_list, fn (user_id) -> get_player_info(String.trim(user_id))["response"]["players"] end)
+    get_player_infos(user_ids_list)["response"]["players"]
   end
 
   @spec pmap(list(), function()) :: list()
