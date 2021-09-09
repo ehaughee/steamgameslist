@@ -3,7 +3,7 @@
   <ol>
     <%= for profile <- @profiles do %>
       <li>
-        <a href="<%= Steamex.SteamID.base_url(profile["steamid"]) %>">
+        <a href="/user/<%= profile["steamid"] %>">
           <%= profile["personaname"] %>
         </a>
       </li>
