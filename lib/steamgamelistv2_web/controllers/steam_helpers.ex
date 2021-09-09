@@ -1,17 +1,19 @@
 defmodule Steamgamelistv2Web.Controllers.Helpers do
-  # import Plug.Conn
-  # import Phoenix.Controller
-
   @api_key Application.fetch_env!(:steamgamelistv2, Steamgamelistv2Web.Endpoint)[:steam_api_key]
   @game_info_url_base "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=#{@api_key}&include_appinfo=true&steamid="
   @player_info_url_base "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=#{@api_key}&steamids="
+  @player_friends_list_url_base "http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=#{@api_key}&relationship=friend&steamid="
 
   def get_player_games(user_id) do
     make_api_call(@game_info_url_base <> user_id)
   end
 
-  def get_player_info(user_id) do
-    make_api_call(@player_info_url_base <> user_id)
+  def get_player_infos(user_ids) do
+    make_api_call(@player_info_url_base <> Enum.join(user_ids, ","))
+  end
+
+  def get_player_friend_list(user_id) do
+    make_api_call(@player_friends_list_url_base <> user_id)
   end
 
   defp make_api_call(url) do
@@ -28,23 +30,5 @@ defmodule Steamgamelistv2Web.Controllers.Helpers do
         :error
     end
   end
-
-  # def render_blank(conn) do
-  #   conn
-  #   |> send_resp(204, "")
-  # end
-
-  # def render_error(conn, status, opts) do
-  #   conn
-  #   |> put_status(status)
-  #   |> render(MyApp.ErrorView, "#{status}.json", opts)
-  # end
-
-  # def ensure_current_user(conn, _) do
-  #   case conn.assigns.current_user do
-  #     nil -> render_error(conn, 401, message: "unauthorized")
-  #     current_user -> conn
-  #   end
-  # end
 
 end
