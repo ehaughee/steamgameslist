@@ -1,9 +1,19 @@
 <section>
-  <form method="GET", action="/intersection">
-    <label>Enter Steam IDs</label>
-    <div>
-      <textarea name="user_ids" class="border-2 border-gray-300 rounded-lg"></textarea>
-    </div>
-    <input type="submit" />
-  </form>
+  <div class="w-72 mx-auto">
+    <form
+      method="GET"
+      action="/intersection"
+      class="flex flex-col w-full"
+    >
+      <label>Enter Steam IDs</label>
+        <textarea
+          name="user_ids"
+          class="w-full mb-2 border-2 border-gray-300 rounded"
+        ></textarea>
+      <input
+        class="w-full px-2 py-1 self-center border-2 border-gray-300 rounded cursor-pointer"
+        value="Find matches"
+        type="submit" />
+    </form>
+  </div>
 </section>
