@@ -23,11 +23,4 @@ defmodule Steamgamelistv2Web.UserController do
       game_image_url_base: @game_image_url_base
     )
   end
-
-  @spec pmap(list(), function()) :: list()
-  defp pmap(collection, func) do
-    collection
-    |> Enum.map(&(Task.async(fn -> func.(&1) end)))
-    |> Enum.map(&Task.await/1)
-  end
 end

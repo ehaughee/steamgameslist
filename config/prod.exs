@@ -21,7 +21,8 @@ config :steamgamelistv2, Steamgamelistv2Web.Endpoint,
   http: [port: {:system, "PORT"}], # Possibly not needed, but doesn't hurt
   url: [host: System.get_env("APP_NAME") <> ".gigalixirapp.com", port: 443],
   secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
-  server: true
+  server: true,
+  steam_api_key: System.get_env("STEAM_API_KEY")
 
 # ## SSL Support
 #

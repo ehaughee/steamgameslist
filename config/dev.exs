@@ -54,7 +54,8 @@ config :steamgamelistv2, Steamgamelistv2Web.Endpoint,
       ~r"lib/steamgamelistv2_web/(live|views)/.*(ex)$",
       ~r"lib/steamgamelistv2_web/templates/.*(eex)$"
     ]
-  ]
+  ],
+  steam_api_key: System.get_env("STEAM_API_KEY")
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
