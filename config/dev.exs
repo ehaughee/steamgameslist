@@ -5,20 +5,18 @@ import Config
 #
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
-# with webpack to recompile .js and .css sources.
-config :steamgamelistv2, Steamgamelistv2Web.Endpoint,
-  http: [port: 4000],
-  debug_errors: true,
-  code_reloader: true,
+# with esbuild to bundle .js and .css sources.
+config :steamgameslist, SteamgameslistWeb.Endpoint,
+  # Binding to loopback ipv4 address prevents access from other machines.
+  # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
+  http: [ip: {127, 0, 0, 1}, port: 4000],
   check_origin: false,
+  code_reloader: true,
+  debug_errors: true,
+  secret_key_base: "fzXFpkjzzIS7O/YSAxViCYGbG5G/aStj2FRDIRvZ4vIlx9rKanIcHv1Ka/XTL8H/",
   watchers: [
-    node: [
-      "node_modules/webpack/bin/webpack.js",
-      "--mode",
-      "development",
-      "--watch-stdin",
-      cd: Path.expand("../assets", __DIR__)
-    ]
+    # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
   ]
 
 # ## SSL Support
@@ -46,16 +44,15 @@ config :steamgamelistv2, Steamgamelistv2Web.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :steamgamelistv2, Steamgamelistv2Web.Endpoint,
+config :steamgameslist, SteamgameslistWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/steamgamelistv2_web/(live|views)/.*(ex)$",
-      ~r"lib/steamgamelistv2_web/templates/.*(eex)$"
+      ~r"lib/steamgameslist_web/(live|views)/.*(ex)$",
+      ~r"lib/steamgameslist_web/templates/.*(eex)$"
     ]
-  ],
-  steam_api_key: System.get_env("STEAM_API_KEY")
+  ]
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
