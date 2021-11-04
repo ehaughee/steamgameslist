@@ -33,5 +33,7 @@ npm-debug.log
 /assets/node_modules/
 
 .env
+.in
+.out
 
 .elixir_ls/
