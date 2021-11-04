@@ -90,6 +90,10 @@ defmodule SteamgameslistWeb do
       import SteamgameslistWeb.ErrorHelpers
       import SteamgameslistWeb.Gettext
       alias SteamgameslistWeb.Router.Helpers, as: Routes
+
+      def render_shared(template, assigns \\ []) do
+        render(SteamgameslistWeb.SharedView, template, assigns)
+      end
     end
   end
 

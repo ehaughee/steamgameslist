@@ -17,7 +17,7 @@ defmodule SteamgameslistWeb.Router do
   scope "/", SteamgameslistWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", HomeController, :index
   end
 
   # Other scopes may use custom stacks.
