@@ -2,10 +2,15 @@ defmodule SteamgameslistWeb.UserController do
   use SteamgameslistWeb, :controller
   @game_image_url_base "http://media.steampowered.com/steamcommunity/public/images/apps/" # {appid}/{hash}.jpg
 
+  def index(conn, %{ "user_id" => ""}) do
+    send_resp(conn, 400, "Steam ID is a required parameter")
+  end
+
   def index(conn, %{ "user_id" => user_id }) do
     player_info_response = get_player_infos([user_id])
     player_friend_list_response = get_player_friend_list(user_id)
 
+    # TODO: Sort friend's list by name
     player_friend_profiles = player_friend_list_response["friendslist"]["friends"]
     |> Enum.map(&(&1["steamid"]))
     |> get_player_infos()
