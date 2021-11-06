@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     extend: {},
   },
+  darkMode: 'media',
   variants: {
     extend: {},
   },
