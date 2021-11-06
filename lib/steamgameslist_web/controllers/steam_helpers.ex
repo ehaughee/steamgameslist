@@ -19,7 +19,7 @@ defmodule SteamgameslistWeb.Controllers.SteamHelpers do
   defp make_api_call(url) do
     case HTTPoison.get(url) do
       {:ok, %{status_code: 200, body: body}} ->
-        Poison.decode!(body)
+        Jason.decode!(body)
       {:ok, %{status_code: 401}} ->
         IO.puts "Unauthorized"
       {:ok, %{status_code: 500}} ->
