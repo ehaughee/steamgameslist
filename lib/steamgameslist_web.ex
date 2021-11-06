@@ -24,6 +24,7 @@ defmodule SteamgameslistWeb do
       import Plug.Conn
       import SteamgameslistWeb.Gettext
       alias SteamgameslistWeb.Router.Helpers, as: Routes
+      import SteamgameslistWeb.Controllers.SteamHelpers
     end
   end
 

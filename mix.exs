@@ -45,7 +45,10 @@ defmodule Steamgameslist.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      {:poison, "~> 5.0"},
+      {:httpoison, "~> 1.8"},
+      {:steamex, "~> 0.0.9"}
     ]
   end
 

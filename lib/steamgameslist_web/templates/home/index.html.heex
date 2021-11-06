@@ -1,1 +1,41 @@
-<%= @steam_id %>
+<section class="w-72 mx-auto">
+  <section>
+    <form
+      method="GET"
+      action="/intersection"
+      class="flex flex-col w-full"
+    >
+      <div>
+        <label>Enter Steam IDs</label>
+        <textarea
+          name="user_ids"
+          class="w-full mb-2 border-2 border-gray-300 rounded"
+        ></textarea>
+        <input
+          class="w-full px-2 py-1 self-center border-2 border-gray-300 rounded cursor-pointer"
+          value="Find matches"
+          type="submit"
+        />
+      </div>
+    </form>
+  </section>
+  <hr class="my-3" />
+  <section>
+    <form
+      method="GET"
+      action="/user"
+    >
+      <label>Enter a Steam ID</label>
+      <input
+        name="user_id"
+        type="text"
+        class="w-full mb-2 border-2 border-gray-300 rounded"
+      />
+      <input
+        class="w-full px-2 py-1 self-center border-2 border-gray-300 rounded cursor-pointer"
+        value="Lookup user"
+        type="submit"
+      />
+    </form>
+  </section>
+</section>
