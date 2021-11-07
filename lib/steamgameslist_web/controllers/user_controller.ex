@@ -1,4 +1,6 @@
 defmodule SteamgameslistWeb.UserController do
+  import Steamgameslist.SteamClient
+
   use SteamgameslistWeb, :controller
   @game_image_url_base "http://media.steampowered.com/steamcommunity/public/images/apps/" # {appid}/{hash}.jpg
 
@@ -7,24 +9,29 @@ defmodule SteamgameslistWeb.UserController do
   end
 
   def index(conn, %{ "user_id" => user_id }) do
-    player_info_response = get_player_infos([user_id])
+    player_info_response = get_player_infos([user_id])["response"]["players"]
     player_friend_list_response = get_player_friend_list(user_id)
 
-    # TODO: Sort friend's list by name
     player_friend_profiles = player_friend_list_response["friendslist"]["friends"]
     |> Enum.map(&(&1["steamid"]))
     |> get_player_infos()
+    |> Map.get("response")
+    |> Map.get("players")
+    |> Enum.sort_by(&(&1["personaname"]))
 
-    # TODO: Sort the games by name
-    game_info_response = get_player_games(user_id)
+    game_info_response = get_player_games(user_id)["response"]
+    sorted_games_list = game_info_response
+    |> Map.get("games")
+    |> Enum.sort_by(&(&1["name"]))
 
     render(
       conn,
       "index.html",
       user_id: String.to_integer(user_id),
-      games_info: game_info_response["response"],
-      player_info: List.first(player_info_response["response"]["players"]),
-      player_friend_profiles: player_friend_profiles["response"]["players"],
+      games: sorted_games_list,
+      game_count: game_info_response["game_count"],
+      player_info: List.first(player_info_response),
+      player_friend_profiles: player_friend_profiles,
       game_image_url_base: @game_image_url_base
     )
   end

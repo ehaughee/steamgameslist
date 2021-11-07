@@ -4,14 +4,14 @@
     <h2 class="text-5xl font-bold">
       <a href={Steamex.SteamID.base_url(@user_id)}>
         <%= @player_info["personaname"] %>
-        (<%= @games_info["game_count"] %>)
+        (<%= @game_count %>)
       </a>
     </h2>
   </div>
   <div class="flex flex-row">
     <div>
       <%= render_shared "games_list.html", %{
-        games: @games_info["games"],
+        games: @games,
         game_image_url_base: @game_image_url_base
       } %>
     </div>
