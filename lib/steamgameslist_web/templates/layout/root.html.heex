@@ -9,10 +9,12 @@
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
-  <body class="dark:bg-gray-800 dark:text-white">
+  <body class="bg-base-300">
     <header>
       <%= render_shared "nav_header.html" %>
     </header>
-    <%= @inner_content %>
+    <section class="container mx-auto">
+      <%= @inner_content %>
+    </section>
   </body>
 </html>
