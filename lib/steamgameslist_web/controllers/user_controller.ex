@@ -1,7 +1,6 @@
 defmodule SteamgameslistWeb.UserController do
-  import Steamgameslist.SteamClient
-
   use SteamgameslistWeb, :controller
+  import Steamgameslist.SteamClient
   @game_image_url_base "http://media.steampowered.com/steamcommunity/public/images/apps/" # {appid}/{hash}.jpg
 
   def index(conn, %{ "user_id" => ""}) do

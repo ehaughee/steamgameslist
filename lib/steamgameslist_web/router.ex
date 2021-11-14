@@ -20,6 +20,7 @@ defmodule SteamgameslistWeb.Router do
     get "/", HomeController, :index
     get "/user/:user_id", UserController, :index
     get "/user/", UserController, :index
+    get "/intersection/", IntersectionController, :index
   end
 
   # Other scopes may use custom stacks.
