@@ -4,9 +4,15 @@
     <h2 class="text-5xl font-bold">
       <a href={Steamex.SteamID.base_url(@user_id)}>
         <%= @player_info["personaname"] %>
-        (<%= @game_count %>)
       </a>
     </h2>
+  </div>
+  <div class="mb-2">
+    <%= render_shared "user_stats.html", %{
+      game_count: @game_count,
+      friend_count: Enum.count(@player_friend_profiles),
+      time_played: @total_play_time
+    } %>
   </div>
   <div class="flex flex-row justify-between">
     <div>

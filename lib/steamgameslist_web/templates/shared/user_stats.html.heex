@@ -1,0 +1,15 @@
+<div class="w-full shadow stats">
+  <div class="stat place-items-center place-content-center">
+    <div class="stat-title">Games</div> 
+    <div class="stat-value"><%= @game_count %></div> 
+  </div> 
+  <div class="stat place-items-center place-content-center">
+    <div class="stat-title">Friends</div> 
+    <div class="stat-value"><%= @friend_count %></div>
+  </div>
+  <div class="stat place-items-center place-content-center">
+    <div class="stat-title">Time Played</div> 
+    <div class="stat-value"><%= Float.round(@time_played / 60, 1) %></div> 
+    <div class="stat-desc">Hours</div>
+  </div>
+</div>

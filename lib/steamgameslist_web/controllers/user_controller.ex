@@ -22,7 +22,10 @@ defmodule SteamgameslistWeb.UserController do
     game_info_response = get_player_games(user_id)["response"]
     sorted_games_list = game_info_response
     |> Map.get("games")
-    |> Enum.sort_by(&(&1["name"]))
+    |> Enum.sort(&(&2["playtime_forever"] <= &1["playtime_forever"]))
+
+    total_play_time = sorted_games_list
+    |> Enum.reduce(0, &(&2 = &2 + &1["playtime_forever"]))
 
     render(
       conn,
@@ -32,7 +35,8 @@ defmodule SteamgameslistWeb.UserController do
       game_count: game_info_response["game_count"],
       player_info: List.first(player_info_response),
       player_friend_profiles: player_friend_profiles,
-      game_image_url_base: @game_image_url_base
+      game_image_url_base: @game_image_url_base,
+      total_play_time: total_play_time
     )
   end
 end
