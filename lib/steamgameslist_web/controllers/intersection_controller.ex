@@ -48,7 +48,7 @@ defmodule SteamgameslistWeb.IntersectionController do
   end
 
   defp get_all_user_games(user_ids_list) do
-    pmap(user_ids_list, fn (user_id) -> get_player_games(String.trim(user_id))["response"]["games"] end)
+    pmap(user_ids_list, fn (user_id) -> get_player_games(String.trim(user_id))["response"]["games"] || [] end)
   end
 
   defp get_all_user_profiles(user_ids_list) do
