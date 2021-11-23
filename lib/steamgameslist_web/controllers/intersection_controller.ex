@@ -3,21 +3,30 @@ defmodule SteamgameslistWeb.IntersectionController do
   import Steamgameslist.SteamClient
   @game_image_url_base "http://media.steampowered.com/steamcommunity/public/images/apps/" # {appid}/{hash}.jpg
 
+  def index(conn, %{ "user_ids" => "" }) do
+    send_resp(conn, 400, "At least two, comma separated, Steam IDs are a required to find the intersection.")
+  end
+
   def index(conn, %{ "user_ids" => user_ids }) do
     user_ids_list = String.split(user_ids, ",")
-    # TODO: Ensure steam_id64
-    all_user_games = get_all_user_games(user_ids_list)
-    all_user_profiles = List.flatten(get_all_user_profiles(user_ids_list))
-    intersection = get_intersection(all_user_games)
-    |> Enum.sort(&(&2["playtime_forever"] <= &1["playtime_forever"]))
+    if length(user_ids_list) < 2 do
+      send_resp(conn, 400, "At least two, comma separated, Steam IDs are a required to find the intersection.")
+      halt(conn)
+    else
+      # TODO: Ensure steam_id64
+      all_user_games = get_all_user_games(user_ids_list)
+      all_user_profiles = List.flatten(get_all_user_profiles(user_ids_list))
+      intersection = get_intersection(all_user_games)
+      |> Enum.sort(&(&2["playtime_forever"] <= &1["playtime_forever"]))
 
-    render(
-      conn,
-      "index.html",
-      games: intersection,
-      profiles: all_user_profiles,
-      game_image_url_base: @game_image_url_base
-    )
+      render(
+        conn,
+        "index.html",
+        games: intersection,
+        profiles: all_user_profiles,
+        game_image_url_base: @game_image_url_base
+      )
+    end
   end
 
   # defp ensure_steam_id64(user_ids) do
