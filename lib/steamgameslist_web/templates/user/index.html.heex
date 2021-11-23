@@ -11,7 +11,7 @@
     <%= render_shared "user_stats.html", %{
       game_count: @game_count,
       friend_count: Enum.count(@player_friend_profiles),
-      time_played: @total_play_time
+      total_time_played: @total_play_time
     } %>
   </div>
   <div class="flex flex-row justify-between">

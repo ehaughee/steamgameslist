@@ -8,8 +8,8 @@
     <div class="stat-value"><%= @friend_count %></div>
   </div>
   <div class="stat place-items-center place-content-center">
-    <div class="stat-title">Time Played</div> 
-    <div class="stat-value"><%= Float.round(@time_played / 60, 1) %></div> 
+    <div class="stat-title">Total Time Played</div>
+    <div class="stat-value"><%= round(@total_time_played / 60) %></div>
     <div class="stat-desc">Hours</div>
   </div>
 </div>
