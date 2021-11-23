@@ -23,7 +23,8 @@
     </div>
     <div>
       <%= render_shared "friends_list.html", %{
-        profiles: @player_friend_profiles
+        profiles: @player_friend_profiles,
+        user_id: @user_id
       } %>
     </div>
   </div>

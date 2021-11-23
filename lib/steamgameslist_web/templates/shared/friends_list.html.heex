@@ -8,6 +8,8 @@
               <th scope="col">
                 Friends
               </th>
+              <td scope="col">
+              </td>
             </tr>
           </thead>
           <tbody>
@@ -26,6 +28,11 @@
                       </div>
                     </div>
                   </div>
+                </td>
+                <td>
+                  <a href={"/intersection?user_ids=#{@user_id},#{profile["steamid"]}"}>
+                    Find common games
+                  </a>
                 </td>
               </tr>
             <% end %>
