@@ -9,9 +9,11 @@
                 <th scope="col">
                   Name
                 </th>
-                <th scope="col">
-                  Total Playtime
-                </th>
+                <%= unless @is_intersection do %>
+                  <th scope="col">
+                    Total Playtime
+                  </th>
+                <% end %>
               </tr>
             </thead>
             <tbody>
@@ -38,11 +40,13 @@
                       </div>
                     </div>
                   </td>
-                  <td>
-                    <span class="px-2 inline-flex text-xs">
-                      <%= Float.round(game["playtime_forever"] / 60, 1) %> hours
-                    </span>
-                  </td>
+                  <%= unless @is_intersection do %>
+                    <td>
+                      <span class="px-2 inline-flex text-xs">
+                        <%= Float.round(game["playtime_forever"] / 60, 1) %> hours
+                      </span>
+                    </td>
+                  <% end %>
                 </tr>
               <% end %>
             </tbody>
