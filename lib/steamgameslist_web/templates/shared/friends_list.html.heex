@@ -30,9 +30,14 @@
                   </div>
                 </td>
                 <td>
-                  <a href={"/intersection?user_ids=#{@user_id},#{profile["steamid"]}"}>
-                    Find common games
-                  </a>
+                  <div class="btn-group">
+                    <a class="btn btn-xs" href={"/intersection?user_ids=#{@user_id},#{profile["steamid"]}"}>
+                      Common Games
+                    </a>
+                    <a class="btn btn-xs" href={profile["profileurl"]}>
+                      Steam Profile
+                    </a>
+                  </div>
                 </td>
               </tr>
             <% end %>

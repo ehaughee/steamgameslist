@@ -2,7 +2,7 @@
   <div class="flex mb-2">
     <img class="h-12 w-12 rounded-full mx-2" src={@player_info["avatarmedium"]} />
     <h2 class="text-5xl font-bold">
-      <a href={Steamex.SteamID.base_url(@user_id)}>
+      <a href={@player_info["profileurl"]}>
         <%= @player_info["personaname"] %>
       </a>
     </h2>
