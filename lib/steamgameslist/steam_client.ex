@@ -7,17 +7,14 @@ defmodule Steamgameslist.SteamClient do
   @player_friends_list_url_base "http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=#{@api_key}&relationship=friend&steamid="
 
   def get_player_games(user_id) do
-    Logger.info("Get player games for user: #{user_id}")
     make_api_call(@game_info_url_base <> user_id)
   end
 
   def get_player_infos(user_ids) do
-    Logger.info("Get player info for #{length(user_ids)} players")
     make_api_call(@player_info_url_base <> Enum.join(user_ids, ","))
   end
 
   def get_player_friend_list(user_id) do
-    Logger.info("Get friends list for user: #{user_id}")
     make_api_call(@player_friends_list_url_base <> user_id)
   end
 
@@ -30,9 +27,10 @@ defmodule Steamgameslist.SteamClient do
 
       {:ok, %{status_code: 401}} ->
         Logger.error("Unauthorized")
+        :error
 
-      {:ok, %{status_code: 500}} ->
-        Logger.error("Unexpected error from Steam API")
+      {:ok, %{status_code: 500, body: body}} ->
+        Logger.error("Unexpected error from Steam API. Body: #{body}")
         :error
 
       {:error, %{reason: reason}} ->

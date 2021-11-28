@@ -1,49 +1,53 @@
-<div class="flex flex-col">
-  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-      <div>
-        <table class="table table-compact">
-          <thead>
-            <tr>
-              <th scope="col">
-                Friends
-              </th>
-              <td scope="col">
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            <%= for profile <- @profiles do %>
+<%= if length(@profiles) < 1 do %>
+  No friends found
+<% else %>
+  <div class="flex flex-col">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <div>
+          <table class="table table-compact">
+            <thead>
               <tr>
-                <td>
-                  <div class="flex items-center">
-                    <div class="flex-shrink-0 h-10 w-10">
-                      <img class="rounded-full" src={profile["avatarmedium"]}>
-                    </div>
-                    <div class="ml-4">
-                      <div class="text-sm font-medium text-gray-900">
-                        <a class="link-primary link-hover" href={"/user/#{profile["steamid"]}"}>
-                          <%= profile["personaname"] %>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="btn-group">
-                    <a class="btn btn-xs" href={"/intersection?user_ids=#{@user_id},#{profile["steamid"]}"}>
-                      Common Games
-                    </a>
-                    <a class="btn btn-xs" href={profile["profileurl"]}>
-                      Steam Profile
-                    </a>
-                  </div>
+                <th scope="col">
+                  Friends
+                </th>
+                <td scope="col">
                 </td>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <%= for profile <- @profiles do %>
+                <tr>
+                  <td>
+                    <div class="flex items-center">
+                      <div class="flex-shrink-0 h-10 w-10">
+                        <img class="rounded-full" src={profile["avatarmedium"]}>
+                      </div>
+                      <div class="ml-4">
+                        <div class="text-sm font-medium text-gray-900">
+                          <a class="link-primary link-hover" href={"/user/#{profile["steamid"]}"}>
+                            <%= profile["personaname"] %>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="btn-group">
+                      <a class="btn btn-xs" href={"/intersection?user_ids=#{@user_id},#{profile["steamid"]}"}>
+                        Common Games
+                      </a>
+                      <a class="btn btn-xs" href={profile["profileurl"]}>
+                        Steam Profile
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>
