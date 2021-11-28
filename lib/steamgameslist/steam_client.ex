@@ -1,7 +1,7 @@
 defmodule Steamgameslist.SteamClient do
   require Logger
 
-  @api_key Application.fetch_env!(:steamgameslist, SteamgameslistWeb.Endpoint)[:steam_api_key]
+  @api_key System.fetch_env!("STEAM_API_KEY")
   @game_info_url_base "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=#{@api_key}&include_appinfo=true&steamid="
   @player_info_url_base "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=#{@api_key}&steamids="
   @player_friends_list_url_base "http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=#{@api_key}&relationship=friend&steamid="

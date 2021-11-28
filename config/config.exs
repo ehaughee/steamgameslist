@@ -12,8 +12,7 @@ config :steamgameslist, SteamgameslistWeb.Endpoint,
   url: [host: "localhost"],
   render_errors: [view: SteamgameslistWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Steamgameslist.PubSub,
-  live_view: [signing_salt: "RMvPEkiH"],
-  steam_api_key: System.get_env("STEAM_API_KEY")
+  live_view: [signing_salt: "RMvPEkiH"]
 
 # Configures the mailer
 #
