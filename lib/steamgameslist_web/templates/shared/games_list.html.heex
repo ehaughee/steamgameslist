@@ -43,7 +43,8 @@
                   <%= unless @is_intersection do %>
                     <td>
                       <span class="px-2 inline-flex text-xs">
-                        <%= Float.round(game["playtime_forever"] / 60, 1) %> hours
+                        <% playtime_forever_hours = round(game["playtime_forever"]) / 60 %>
+                        <%= if playtime_forever_hours > 0, do: playtime_forever_hours <> " hours", else: "-" %>
                       </span>
                     </td>
                   <% end %>

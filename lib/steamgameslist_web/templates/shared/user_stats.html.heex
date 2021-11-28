@@ -1,15 +1,15 @@
 <div class="w-full shadow stats">
   <div class="stat place-items-center place-content-center">
     <div class="stat-title">Games</div> 
-    <div class="stat-value"><%= @game_count %></div> 
+    <div class="stat-value"><%= if @game_count > 0, do: @game_count, else: "-" %></div>
   </div> 
   <div class="stat place-items-center place-content-center">
-    <div class="stat-title">Friends</div> 
+    <div class="stat-title">Friends</div>
     <div class="stat-value"><%= @friend_count %></div>
   </div>
   <div class="stat place-items-center place-content-center">
     <div class="stat-title">Total Time Played</div>
-    <div class="stat-value"><%= round(@total_time_played / 60) %></div>
+    <div class="stat-value"><%= if @total_hours_played > 0, do: @total_hours_played, else: "-" %></div>
     <div class="stat-desc">Hours</div>
   </div>
 </div>
