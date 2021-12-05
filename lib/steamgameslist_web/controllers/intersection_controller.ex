@@ -16,8 +16,9 @@ defmodule SteamgameslistWeb.IntersectionController do
       # TODO: Ensure steam_id64
       all_user_games = get_all_user_games(user_ids_list)
       all_user_profiles = List.flatten(get_all_user_profiles(user_ids_list))
-      intersection = get_intersection(all_user_games)
-      |> Enum.sort(&(&2["playtime_forever"] <= &1["playtime_forever"]))
+      intersection =
+        get_intersection(all_user_games)
+        |> Enum.sort_by(&(&1["name"]))
 
       render(
         conn,
