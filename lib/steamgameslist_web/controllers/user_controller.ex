@@ -12,11 +12,14 @@ defmodule SteamgameslistWeb.UserController do
     player_friend_list_response = get_player_friend_list(user_id)
 
     player_friend_profiles = if player_friend_list_response != :error, do: player_friend_list_response["friendslist"]["friends"], else: []
-    |> Enum.map(&(&1["steamid"]))
-    |> get_player_infos()
-    |> Map.get("response", [])
-    |> Map.get("players", [])
-    |> Enum.sort_by(&(&1["personaname"]))
+
+    hydrated_friend_profiles =
+      player_friend_profiles
+      |> Enum.map(&(&1["steamid"]))
+      |> get_player_infos()
+      |> Map.get("response", [])
+      |> Map.get("players", [])
+      |> Enum.sort_by(&(&1["personaname"]))
 
     game_info_response = get_player_games(user_id)["response"]
 
@@ -34,7 +37,7 @@ defmodule SteamgameslistWeb.UserController do
       games: sorted_games_list,
       game_count: game_info_response["game_count"] || 0,
       player_info: List.first(player_info_response),
-      player_friend_profiles: player_friend_profiles,
+      player_friend_profiles: hydrated_friend_profiles,
       game_image_url_base: @game_image_url_base,
       total_play_time: total_play_time
     )
