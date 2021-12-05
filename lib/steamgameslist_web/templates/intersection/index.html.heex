@@ -1,10 +1,14 @@
 <div>
-  <h1>Games in common (<%= Enum.count(@games) %>)</h1>
-  <div class="flex justify-evenly mb-4">
+  <div class="flex justify-evenly my-4">
     <%= for profile <- @profiles do %>
-      <%= render_shared "user_card.html", %{ profile: profile }%>
+      <%= render_shared "user_card.html", %{ profile: profile, class_override: "mx-auto" }%>
     <% end %>
   </div>
+  <div class="divider"></div>
+  <div class="text-center">
+    <span class="inline text-3xl">Games in common (<%= Enum.count(@games) %>)</span>
+  </div>
+  <div class="divider"></div>
   <div>
     <%= render_shared "games_list.html", %{
         games: @games,
